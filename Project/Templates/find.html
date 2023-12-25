@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Gotham Regency Inn</title>
+  </head>
+  <body>
+    {% if messages %}
+  <ul class="messages fx-row" id="messageTag">
+  {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+  {% endfor %}
+  <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+  </ul>
+{% endif %}
+    <div class="bg-image">
+    <header class="pd-inl-400 | pd-blk-300">
+        <nav class="fs-300 | fx-space-between">
+            <span>
+                <a href="/home" class="text-white-100">Gotham Regency Inn</a>
+            </span>
+            <span class="fx-space-evenly">
+                <a href="/find" class="pd-inl-200 | text-white-100 | brd-rad-btn-100 | bg-black-100 | bs-200">Find</a>
+                <a href="/about" class="pd-inl-200 | text-white-100">About Us</a>
+                {% if user.is_authenticated %}
+                    <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+                {% else %}
+                    <a href="/login" class="pd-inl-200 | text-white-100">Login</a>
+                {% endif %}
+            </span>
+        </nav>
+    </header>
+    <main class="fx-centre">
+        <div class="fx-centre fx-col blr-300 bs-max brd-rad-300 mg-inl-300 pd-inl-400 pd-blk-300">
+            <h1 class="text-white-100">Find a Hotel</h1>
+            <section class="divider divider1 mg-blk-200"></section>
+            <form action="find" class="pd-200" method="post">
+                {% csrf_token %}
+                <div class="fx-col pd-blk-200">
+                    <label for="location" class="text-white-200">Location</label>
+                    <span>
+                        <select name="hotel" id="hotel" class="brd-rad-100">
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="dubai">GRI, Dubai, UAE</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="abudhabi">GRI, Abu Dhabi, UAE</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="newyork">GRI, New York, USA</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="tokyo">GRI, Tokyo, Japan</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="amsterdam">GRI, Amsterdam, Netherlands</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="pyongyang">GRI, Pyongyang, North Korea</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="riodejanerio">GRI, Rio de Janerio, Brazil</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="munich">GRI, Munich, Germany</option>
+                            <option class="blr-300 bg-trn-black-200" name="hotelSelect" value="venice">GRI, Venice, Italy</option>
+                        </select>
+                    </span>
+                </div>
+                <div class="fx-row fx-space-between">
+                    <div class="fx-col">
+                        <label for="accomodations" class="text-white-200">Accomodations</label>
+                        <span>
+                            <select name="accomodations" id="accomodations" class="brd-rad-100">
+                                <option class="blr-300 bg-trn-black-200" value="1">1</option>
+                                <option class="blr-300 bg-trn-black-200" value="2">2</option>
+                                <option class="blr-300 bg-trn-black-200" value="3">3</option>
+                                <option class="blr-300 bg-trn-black-200" value="4">4</option>
+                                <option class="blr-300 bg-trn-black-200" value="5">5</option>
+                                <option class="blr-300 bg-trn-black-200" value="6">6</option>
+                                <option class="blr-300 bg-trn-black-200" value="7">7</option>
+                                <option class="blr-300 bg-trn-black-200" value="8">8</option>
+                                <option class="blr-300 bg-trn-black-200" value="9">9</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="fx-col width-40 pd-blk-200">
+                        <label for="duration" class="text-white-200">Duration</label>
+                        <span>
+                            <input type="text" name="duration_num" class="brd-rad-100 width-25">
+                            <select name="duration" class="brd-rad-100">
+                                <option class="blr-300 bg-trn-black-200" value="01">Days</option>
+                                <option class="blr-300 bg-trn-black-200" value="02">Weeks</option>
+                                <option class="blr-300 bg-trn-black-200" value="03">Months</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <section class="divider divider1"></section>
+                <div class="fx-centre">
+                    <h1 class="text-white-100 pd-blk-200">Additional Services</h1>
+                </div>
+                <div class="fx-col">
+                    <span class="pd-blk-100">
+                        <input type="checkbox" name="check1">
+                        <label for="check1" class="text-white-200">Book me an Airplane ticket</label>
+                    </span>
+                    <span class="pd-blk-100">
+                        <input type="checkbox" name="check2">
+                        <label for="check2" class="text-white-200">Book me a Train ticket</label>
+                    </span>
+                    <span class="pd-blk-100">
+                        <input type="checkbox" name="check3">
+                        <label for="check3" class="text-white-200">Book me a Taxi from Airport/Railway Station</label>
+                    </span>
+                    <span class="pd-blk-100">
+                        <input type="checkbox" name="check4">
+                        <label for="check4" class="text-white-200">I'm a Gold/Gold Pro/Gold Pro Max customer</label>
+                    </span>
+                </div>
+                <div class="pd-blk-200 pd-inl-300">
+                    <button type="submit" class="pd-inl-400 | pd-blk-100 | brd-rad-btn-100 | text-black-200 | mg-blk-300 | login-button">Book</button>
+                </div>
+            </form>
+            </div>
+    </main>
+    <script>
+        function hideElement() {
+          var element = document.getElementById('messageTag')
+          element.style.display = 'none';
+      }
+      </script>
+  </body>
+</html>

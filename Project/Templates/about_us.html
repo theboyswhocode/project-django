@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <title>Gotham Regency Inn</title>
+  </head>
+
+  <body>
+    {% if messages %}
+    <ul class="messages fx-row" id="messageTag">
+    {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+    {% endfor %}
+    <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+    </ul>
+    {% endif %}
+    <div class="bg-image3">
+      <header class="pd-inl-400 | pd-blk-300">
+        <nav class="fs-300 | fx-space-between">
+          <span>
+            <a href="" class="text-white-100">Gotham Regency Inn</a>
+          </span>
+          <span class="fx-space-evenly">
+            <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
+            <a href="/about" class="pd-inl-200 | text-white-100 | bg-black-100 | brd-rad-btn-100 | bs-200">About Us</a>
+            {% if user.is_authenticated %}
+            <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+            {% else %}
+            <a href="/login" class="pd-inl-200 | text-white-100">Login</a>
+            {% endif %}
+          </span>
+        </nav>
+      </header>
+      <div class="fx-centre ht-75">
+            <h1 class="fs-500 text-white-100 pd-blk-200 align-center">Welcome to Gotham Regency Inn</h1>
+            <p class="text-gray-100 width-40 txt-right">Experience luxury and elegance at Gotham Regency Inn, a premier hotel that offers world-class amenities and exceptional service. Immerse yourself in comfort and relaxation while enjoying our stunning views and top-notch facilities.</p>
+            <form action="home" method="post">
+                {% csrf_token %}
+                <button
+                class="brd-rad-btn-100 pd-inl-300 pd-blk-100 bg-white-200 text-bg-black-100 mg-blk-200"
+                name="handleButton"
+                value="redirect"
+                >
+                Book Your Stay
+            </button>
+      </div>
+    </div>
+    <section></section>
+    <div class="bg-black-100 fx-row-a-center pd-inl-nvw pd-blk-400">
+        <img class="abstract" src="{% static "abstract1.jpg" %}" alt="abstract_art">
+        <div class="pd-inl-200">
+            <h2 class="text-white-100 fs-400 mg-blk-200">Our Brand: Gotham Regency Inn</h2>
+            <p class="text-gray-100">Gotham Regency Inn is more than just a hotel. It's a lifestyle, an experience that leaves a lasting impression. From the moment you step in, you'll be captivated by our attention to detail, impeccable service, and commitment to excellence.</p>
+        </div>
+    </div>
+    <section></section>
+    <div class="bg-black-100 fx-row-a-center pd-inl-nvw pd-blk-400">
+        <div class="width-50 mg-inl-300">
+            <h2 class="text-white-100 fs-400 mg-blk-200">About Gotham Regency Inn</h2>
+            <p class="text-gray-100">Located in the heart of the city, Gotham Regency Inn is the epitome of sophistication and elegance. Our hotel is an architectural marvel that seamlessly blends classic design with modern amenities, creating a unique and enchanting atmosphere for our guests.</p>
+        </div>
+        <div>
+            <img class="abstract" src="{% static "abstract2.jpg" %}" alt="abstract_art">
+        </div>
+    </div>
+    <div class="bg-image4 pd-blk-400">
+        <h2 class="text-white-100 fs-500 txt-algn-center">Features and Amenities</h2>
+        <div class="a1x3grid pd-inl-500">
+            <span class="pd-inl-200 mg-inl-100">
+                <h3 class="text-white-100 fs-400 mg-blk-200">Luxurious Accommodations</h3>
+                <p class="text-gray-100 fs-200">Indulge in our spacious rooms and suites, meticulously designed to provide the utmost comfort and relaxation. Experience serenity like never before with plush bedding, elegant furnishings, and stunning views of the city.</p>
+            </span>
+            <span class="pd-inl-200 mg-inl-100">
+                <h3 class="text-white-100 fs-400 mg-blk-200">Gourmet Dining</h3>
+                <p class="text-gray-100 fs-200">Savour delectable dishes crafted by our renowned chefs at our exquisite restaurants. From fine dining to casual eateries, we offer a range of culinary delights that will tantalize your taste buds and leave you craving for more.</p>
+            </span>
+            <span class="pd-inl-200 mg-inl-100">
+                <h3 class="text-white-100 fs-400 mg-blk-200">State-of-the-art Facilities</h3>
+                <p class="text-gray-100 fs-200">Stay active and rejuvenated with our state-of-the-art fitness centre, spa, and swimming pool. Pamper yourself with a variety of wellness services and indulge in ultimate relaxation amidst a serene and tranquil environment.</p>
+            </span>
+        </div>
+    </div>
+    <div class="bg-black-100 pd-blk-400">
+        <h2 class="text-white-100 fs-500 txt-algn-center">Location and Accessibility</h2>
+        <p class=" text-white-300 pd-inl-500 mg-blk-300">Ideally situated in the heart of the city, Gotham Regency Inn offers easy access to the main attractions, shopping districts, and business centres. With convenient transportation links nearby, exploring the city has never been easier.</p>
+        <div class="pd-inl-500 a1x3grid pd-blk-300">
+            <span>
+                <img class="h-wpx brd-rad-btn-100" src="{% static "th1.jpeg" %}" alt="abstract_art">
+                <h3 class="text-white-200 fs200">Central Location</h3>
+                <p class="text-gray-100">Enjoy the convenience of staying in the heart of the city, with major landmarks and attractions just a stone's throw away from our hotel.</p>
+            </span>
+            <span>
+                <img class="h-wpx brd-rad-btn-100" src="{% static "bg3.jpg" %}" alt="abstract_art">
+                <h3 class="text-white-200 fs200">Effortless Accessibility</h3>
+                <p class="text-gray-100">With excellent public transportation options and nearby airports, getting to and from Gotham Regency Inn is a breeze, ensuring a smooth and stress-free travel experience.</p>
+            </span>
+            <span>
+                <img class="h-wpx brd-rad-btn-100" src="{% static "th3.jpg" %}" alt="abstract_art">
+                <h3 class="text-white-200 fs200">Shopping and Entertainment</h3>
+                <p class="text-gray-100">Indulge in a world of shopping and entertainment with premier malls, theatres, and cultural hotspots within walking distance from our hotel.</p>
+            </span>
+    </div>
+    </div>
+    <div class="bg-black-100 pd-inl-500 pd-blk-400">
+        <h2 class="text-white-100 fs-500 txt-algn-center">Customer Reviews</h2>
+        <div class="a2x2grid">
+            <span class="bg-gold brd-rad-100 pd-inl-300 pd-blk-200">
+                <h3>Outstanding Service</h3>
+                <p>"The staff at Gotham Regency Inn went above and beyond to make our stay truly memorable. The impeccable service, attention to detail, and warm hospitality made us feel like royalty."</p>
+            </span>
+            <span class="bg-gold brd-rad-100 pd-inl-300 pd-blk-200">
+                <h3>Breathtaking Views</h3>
+                <p>"The breathtaking views from our room were absolutely mesmerizing. We woke up to stunning sunrises and watched the city lights sparkle in the evening. Truly unforgettable!"</p>
+            </span>
+            <span class="bg-gold brd-rad-100 pd-inl-300 pd-blk-200">
+                <h3>Unparalleled Luxury</h3>
+                <p>"Gotham Regency Inn sets a new standard for luxury. From the beautifully designed rooms to the exquisite dining options, every aspect of our stay was sheer perfection."</p>
+            </span>
+            <span class="bg-gold brd-rad-100 pd-inl-300 pd-blk-200">
+                <h3>Exceptional Experience</h3>
+                <p>"Our stay at Gotham Regency Inn exceeded all expectations. The attention to detail and the level of service provided by the staff made our trip truly exceptional. We can't wait to return!"</p>
+            </span>
+        </div>
+    </div>
+    <div class="bg-black-100 pd-inl-500 pd-blk-400">
+        <h2 class="text-white-100 fs-500 txt-algn-center">Contact Information</h2>
+        <div class="a1x2grid">
+            <span>
+                <h3 class="text-white-100">Address</h3>
+                <p class="text-gray-100">Gotham Regency Inn<br>123 Main Street<br>Gotham City<br>12345</p>
+            </span>
+            <span>
+                <h3 class="text-white-100">Email</h3>
+                <p class="text-gray-100">gothamregency@gmail.com</p>
+            </span>
+        </div>
+    </div>
+    <footer class="fx-row-space-around pd-blk-300">
+        <span class="fx-centre"><h2>All Rights Reserved</h2></span>
+        <div class="fx-centre">
+          <h2>© Gotham Regency Inn™, 2023</h2>
+          <div>
+            <a href="/terms">Privacy Policy</a>
+            <a href="/terms">Terms and Conditions</a>
+            <a href="#">Accesibility</a>
+            <a href="#">Sitemap</a>
+          </div>
+        </div>
+    </footer>
+    <script>
+        function hideElement() {
+          var element = document.getElementById('messageTag')
+          element.style.display = 'none';
+      }
+      </script>
+    </body>
+</html>
