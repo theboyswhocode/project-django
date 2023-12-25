@@ -1,1 +1,0 @@
-web: gunicorn Project_GRI.wsgi --log-file -
