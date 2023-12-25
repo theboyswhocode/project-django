@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Gotham Regency Inn</title>
+  </head>
+  <body>
+    {% comment %} <img src={% static "pexels-ben-mack-5707644.jpg" %} alt="Error">  {% endcomment %}
+    {% if messages %}
+  <ul class="messages fx-row" id="messageTag">
+  {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+  {% endfor %}
+  <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+  </ul>
+{% endif %}
+<div class="bg-image">
+  <header class="pd-inl-400 | pd-blk-300">
+    <nav class="fs-300 | fx-space-between">
+        <span>
+            <a href="/home" class="text-white-100">Gotham Regency Inn</a>
+        </span>
+        <span class="fx-space-evenly">
+            <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
+            <a href="/about" class="pd-inl-200 | text-white-100">About Us</a>
+            {% if user.is_authenticated %}
+                <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+            {% else %}
+                <a href="/login" class="pd-inl-200 | text-white-100 | bg-black-100 | brd-rad-btn-100 | bs-200">Sign Up</a>
+            {% endif %}
+        </span>
+    </nav>
+</header>
+  <main class="fx-centre">
+    <div class="blr-300 bg-trn-black-500 brd-rad-100 wd-total pd-200 bs-max">
+      <div class="fx-centre | fx-col">
+        <h1 class="text-white-100 | fs-500">Welcome back!!</h1>
+        <p class="fs-200 | text-gray-100">Let's get sign up</p>
+      </div>
+      <section class="divider"></section>
+      <div class="fx-centre | fx-col | pd-300">
+        <h2 class="text-white-100">Continue with</h2>
+        <div class="fx-row dsp-grid grid-width-equal">
+          <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "google.svg" %}" alt="Google Logo"></span>
+          <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "apple.svg" %}" alt="Apple Logo"></span>
+          <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "meta.svg" %}" alt="Meta Logo"></span>
+          <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "twitter.svg" %}" alt="Twitter Logo"></span>
+        </div>
+        <div class="fx-centre |  fx-col">
+          <p class="text-white-100">Already have an account?</p>
+          <a href="/login" class="text-accent-blue">Login</a>
+        </div>
+        <section class="divider divider1"></section>
+        <div class="fx-centre | fx-col | pd-300">
+          <form action="/signup" method="post">
+            <span class="fx-col mg-blk-300">
+              <label for="user-name" class="text-white-100">Name</label>
+              <input
+              id = "user-name"
+              type="text"
+              name="user-name"
+              placeholder="Name"
+              class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+              />
+            </span>
+            <span class="fx-col mg-blk-300">
+              <label for="user-email" class="text-white-100">Email/Username</label>
+              <input
+              id = "user-email"
+              type="email"
+              name="user-email"
+              placeholder="someone@email.com"
+              class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+              />
+            </span>
+            <span class="fx-col mg-blk-300">
+              <label for="user-password" class="text-white-100">Password</label>
+              <input 
+              id = "user-password"
+              type="password" 
+              name="user-password" 
+              placeholder="●●●●●●●●"
+              class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+              />
+              <input 
+              id = "user-password2"
+              type="password" 
+              name="user-password2" 
+              placeholder="Confirm Password"
+              class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+              />
+            </span>
+              <span>
+                <button type="submit" class="pd-inl-400 | pd-blk-100 | brd-rad-btn-100 | text-black-200 | mg-blk-300 | login-button">Sign In</button>
+              </span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+    <script>
+      function hideElement() {
+        var element = document.getElementById('messageTag')
+        element.style.display = 'none';
+      }
+    </script>
+  </body>
+  </html>
